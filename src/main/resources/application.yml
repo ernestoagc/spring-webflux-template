@@ -1,0 +1,6 @@
+application:
+  ernestotech:
+    key-vault:
+      endpoint: https://kvernestotech.vault.azure.net/
+      sendgrid:
+        secret: dbUsername
