@@ -17,7 +17,7 @@ import org.springframework.lang.Nullable;
 public class KeyVaultConfig {
 
     @Bean
-    @ConfigurationProperties(prefix = "application.ernestotech.key-vault")
+    @ConfigurationProperties(prefix = "application.ernestotech.azure.key-vault")
     public KeyVaultProperties keyVaultProperties(){
         return new KeyVaultProperties();
     }
@@ -40,10 +40,19 @@ public class KeyVaultConfig {
 
 
     @Nullable
-    @Bean(name = "sendgridSecret")
-    public String sendgridSecret(
+    @Bean(name = "serviceBusSecret")
+    public String serviceBusSecret(
             SecretClient secretClient,
             KeyVaultProperties keyVaultProperties){
          return secretClient.getSecret(keyVaultProperties.getSecrets().get("serviceBusSecret")).getValue();
     }
+
+    @Nullable
+    @Bean(name = "testSecret")
+    public String testSecret(
+            SecretClient secretClient,
+            KeyVaultProperties keyVaultProperties){
+        return secretClient.getSecret(keyVaultProperties.getSecrets().get("testSecret")).getValue();
+    }
+
 }
