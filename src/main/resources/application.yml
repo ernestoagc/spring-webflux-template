@@ -1,10 +1,10 @@
 application:
   ernestotech:
-    key-vault:
-      endpoint: https://kvernestotech2.vault.azure.net/
-      clientId: "<CLIENT-ID-APP>"
-      clientSecret: "<CLIENT-SECRET-APP>"
-      tenantId: "<TENANT-ID>"
-      secrets:
-        serviceBusSecret: csServiceBus
-        dataBaseSecret: dbServiceBus
+    azure:
+      key-vault:
+        endpoint: https://kvernestotech2.vault.azure.net/
+        clientId: ${AZURE_APP_CLIENT_ID}
+        clientSecret: ${AZURE_APP_CLIENT_SECRET}
+        tenantId: ${AZURE_TENANT_ID}
+        secrets:
+          testSecret: testSecret

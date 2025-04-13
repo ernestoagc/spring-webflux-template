@@ -22,7 +22,7 @@ import java.util.Collections;
 @AllArgsConstructor
 public class ProductService {
 
-    private final String sengridToken;
+    private final String testSecret;
 
     public Mono<ProductDto> register(ProductRequestDto productRequestDto){
 
@@ -35,7 +35,7 @@ public class ProductService {
 
     public Mono<ProductDto> getDetail(String id){
         return Mono.just(ProductDto.builder()
-                .code("pro").name(sengridToken)
+                .code("pro").name(testSecret)
                 .build());
     }
 
