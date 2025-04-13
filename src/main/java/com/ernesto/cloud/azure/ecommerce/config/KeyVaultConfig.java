@@ -1,5 +1,7 @@
 package com.ernesto.cloud.azure.ecommerce.config;
 
+import com.azure.identity.ClientSecretCredential;
+import com.azure.identity.ClientSecretCredentialBuilder;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 
 import com.azure.security.keyvault.secrets.SecretAsyncClient;
@@ -23,9 +25,16 @@ public class KeyVaultConfig {
 
     @Bean(name = "secretClient")
     public SecretClient getSecretClient(KeyVaultProperties keyVaultProperties){
+
+        ClientSecretCredential clientSecretCredential = new ClientSecretCredentialBuilder()
+                .clientId(keyVaultProperties.getClientId())
+                .clientSecret(keyVaultProperties.getClientSecret())
+                .tenantId(keyVaultProperties.getTenantId())
+                .build();
+
         return new SecretClientBuilder()
                 .vaultUrl(keyVaultProperties.getEndpoint())
-                .credential(new DefaultAzureCredentialBuilder().build())
+                .credential(clientSecretCredential)
                 .buildClient();
     }
 
@@ -35,6 +44,6 @@ public class KeyVaultConfig {
     public String sendgridSecret(
             SecretClient secretClient,
             KeyVaultProperties keyVaultProperties){
-        return secretClient.getSecret(keyVaultProperties.getSendgrid().getSecret()).getValue();
+         return secretClient.getSecret(keyVaultProperties.getSecrets().get("serviceBusSecret")).getValue();
     }
 }
