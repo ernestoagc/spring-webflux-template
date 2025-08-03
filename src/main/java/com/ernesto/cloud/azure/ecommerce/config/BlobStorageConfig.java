@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class BlobStorageConfig {
 
     private final String blobStorageSecret;
+    private final String blobStorageName;
 
     @Bean
     public BlobServiceAsyncClient blobServiceAsyncClient(){
@@ -22,6 +23,6 @@ public class BlobStorageConfig {
 
     @Bean
     public BlobContainerAsyncClient blobContainerAsyncClient(BlobServiceAsyncClient blobServiceAsyncClient){
-        return blobServiceAsyncClient.getBlobContainerAsyncClient("contsternestotech");
+        return blobServiceAsyncClient.getBlobContainerAsyncClient(blobStorageName);
     }
 }

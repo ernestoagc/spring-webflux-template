@@ -10,6 +10,9 @@ application:
           testSecret: testSecret
           serviceBusSecret: csServiceBus
           blobStorageSecret: csBlobStorage
+          appConfigurationSecret: csAppConfiguration
       service-bus:
         queue: sbqueueernestotech
         namespace: sbErnestoTech.servicebus.windows.net
+      app-configuration:
+        blobStorageName: bsErnestoTechName

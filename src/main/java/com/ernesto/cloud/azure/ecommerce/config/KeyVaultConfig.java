@@ -63,4 +63,12 @@ public class KeyVaultConfig {
         return secretClient.getSecret(keyVaultProperties.getSecrets().get("blobStorageSecret")).getValue();
     }
 
+    @Nullable
+    @Bean(name = "appConfigurationSecret")
+    public String appConfigurationSecret(
+            SecretClient secretClient,
+            KeyVaultProperties keyVaultProperties){
+        return secretClient.getSecret(keyVaultProperties.getSecrets().get("appConfigurationSecret")).getValue();
+    }
+
 }
